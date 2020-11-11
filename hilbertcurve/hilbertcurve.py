@@ -92,7 +92,7 @@ class HilbertCurve:
         if (h % 1) != 0:
             raise TypeError("h is not an integer and can not be converted")
         if h > self.max_h:
-            raise ValueError('h must be < 2**(p*N)-1={}')
+            raise ValueError('h must be <= 2**(p*N)-1={}')
         if h < 0:
             raise ValueError('h must be > 0')
 
@@ -154,7 +154,7 @@ class HilbertCurve:
                 'invalid coordinate input x={}. one or more dimensions is not '
                 'an integer and can not be converted'.format(x))
 
-        for i in range(len(x)): x[i] = int(x[i])
+        x = [int(x) for el in x]
 
         M = 1 << (self.p - 1)
 
